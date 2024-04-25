@@ -1,0 +1,35 @@
+<p>user works!</p>
+
+<!-- 2. สร้างตาราง 6. provide data source คือตัวรับข้อมูลที่แสดงข้างใน then ทำ interface -->
+<!-- 12. ใส่ matSort matSortActive="เรียงตามอะไร" matSortDirection="ascending" และ matSort ใน table -->
+<!-- 14. ใส่ function ที่ทำให้ sort ได้ (matSortChange)="sortUsers($event)" matSortDisableClear=for remove non-sorting -->
+<!-- หลัง 14. ไปทำ sortUsers($event) -->
+<table mat-table [dataSource]="dataSource" matSort class="users-table">
+  <ng-container
+    matSort
+    matSortActive="id"
+    matSortDirection="asc"
+    matSortDisableClear
+    (matSortChange)="sortUsers($event)"
+    matColumnDef="id"
+  >
+    <!-- 13. inside every th - mat-sort-header -->
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>ID.</th>
+    <td mat-cell *matCellDef="let element" class="users-table-cell">{{ element.id }}</td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element" class="users-table-cell">{{ element.name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="age">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Age</th>
+    <td mat-cell *matCellDef="let element" class="users-table-cell">{{ element.age }}</td>
+  </ng-container>
+
+  <!-- 3. rendering a row for headline then implement ts file -->
+  <!-- *matHeaderRowDef=เป็นจุดที่จะกำหนดว่าเอาหัวข้อไหนมาแสดง -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+  <!-- 5. define a table row for table -->
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
